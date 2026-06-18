@@ -1,0 +1,77 @@
+# Marketplace Trust Engine Configuration
+
+data:
+  random_seed: 42
+  
+  # Dataset sizes (reduce for faster development)
+  n_users: 10000
+  n_sellers: 1000
+  n_listings: 10000
+  n_transactions: 50000
+  n_reviews: 30000
+  n_devices: 5000
+  n_events: 100000
+  
+  # Fraud scenario prevalence (fraction of total sellers)
+  fraud_prevalence: 0.15
+  
+  # Individual scenario weights (must sum approximately to 1.0)
+  scenario_weights:
+    normal: 0.70
+    new_account_abuse: 0.04
+    mass_listing_abuse: 0.03
+    scam_listings: 0.04
+    payment_refund_abuse: 0.04
+    account_takeover: 0.03
+    fraud_ring: 0.04
+    fake_review_network: 0.03
+    device_sharing: 0.03
+    mixed_suspicious: 0.02
+  
+  # Noise level: controls how much overlap exists between fraud and normal
+  noise_level: 0.3
+  
+  # Output paths
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed"
+
+model:
+  temporal_split:
+    train_fraction: 0.70
+    val_fraction: 0.15
+    test_fraction: 0.15
+  
+  xgboost:
+    n_estimators: 300
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    scale_pos_weight: 5
+    random_state: 42
+  
+  isolation_forest:
+    n_estimators: 200
+    contamination: 0.15
+    random_state: 42
+  
+  logistic_regression:
+    max_iter: 5000
+    random_state: 42
+    C: 0.1
+
+evaluation:
+  thresholds: [0.30, 0.50, 0.70, 0.90]
+  top_k_values: [100, 500, 1000]
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  model_path: "models/trust_engine.pkl"
+
+dashboard:
+  port: 8501
+
+mlflow:
+  tracking_uri: "mlruns"
+  experiment_name: "marketplace-trust-engine"
