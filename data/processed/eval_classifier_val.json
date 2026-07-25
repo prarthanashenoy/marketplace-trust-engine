@@ -1,0 +1,67 @@
+{
+  "model_name": "classifier",
+  "split_name": "val",
+  "n_samples": 150,
+  "n_fraud": 50,
+  "fraud_rate": 0.3333333333333333,
+  "pr_auc": 1.0,
+  "roc_auc": 1.0,
+  "threshold_metrics": [
+    {
+      "threshold": 0.3,
+      "precision": 0.9615384615384616,
+      "recall": 1.0,
+      "f1": 0.9803921568627451,
+      "tp": 50,
+      "fp": 2,
+      "fn": 0,
+      "tn": 98,
+      "flagged_count": 52,
+      "flagged_rate": 0.3466666666666667
+    },
+    {
+      "threshold": 0.5,
+      "precision": 0.9803921568627451,
+      "recall": 1.0,
+      "f1": 0.9900990099009901,
+      "tp": 50,
+      "fp": 1,
+      "fn": 0,
+      "tn": 99,
+      "flagged_count": 51,
+      "flagged_rate": 0.34
+    },
+    {
+      "threshold": 0.7,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 50,
+      "fp": 0,
+      "fn": 0,
+      "tn": 100,
+      "flagged_count": 50,
+      "flagged_rate": 0.3333333333333333
+    },
+    {
+      "threshold": 0.9,
+      "precision": 1.0,
+      "recall": 0.98,
+      "f1": 0.98989898989899,
+      "tp": 49,
+      "fp": 0,
+      "fn": 1,
+      "tn": 100,
+      "flagged_count": 49,
+      "flagged_rate": 0.32666666666666666
+    }
+  ],
+  "top_k_metrics": [
+    {
+      "k": 100,
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "fraud_in_top_k": 50
+    }
+  ]
+}
